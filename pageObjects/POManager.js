@@ -9,7 +9,7 @@ class POManager{
     {
         this.page = page;
         this.loginPage = new LoginPage(this.page);
-        this.dashBoardPage = new DashBoardPage(this.page);
+        this.dashBoardPage = new DashBoardPage(this.dashBoardPage);
         this.cartPage = new CartPage(this.page);
         this.orderReviewPage = new OrderReviewPage(this.page);
         this.orderHistoryPage = new OrderHistoryPage(this.page);
