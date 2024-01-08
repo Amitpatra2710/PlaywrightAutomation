@@ -3,12 +3,20 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "regression": "npx playwright test",
+    "webtest": "npx playwright test tests/MoreValidations.spec.js",
+    "safariNewConfig": "npx playwright test tests/MoreValidations.spec.js --config=playright.config1.js",
+    "generateAlureReport": "allure generate ./allure-results --clean",
+    "openAlureReport": "allure open ./allure-report"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@cucumber/cucumber": "^10.2.1",
     "@playwright/test": "^1.40.1",
-    "@types/node": "^20.10.6"
+    "@types/node": "^20.10.6",
+    "allure-playwright": "^2.10.0"
   }
 }

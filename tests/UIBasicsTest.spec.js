@@ -1,4 +1,5 @@
-const {test,expect} = require('@playwright/test')
+const {test,expect} = require('@playwright/test');
+const { request } = require('http');
 
 test('Browser Context Playwright test',async ({page})=>
 {
@@ -9,6 +10,9 @@ test('Browser Context Playwright test',async ({page})=>
     const userName = page.locator('#username');
     const signIn = page.locator("#signInBtn");
     const cartTitles = page.locator(".card-body a");
+    //page.route('**/*.{jpg,png,jpeg}',route=>route.abort());
+    page.on('request',request=>console.log(request.url()));
+    page.on('response',response=>console.log(response.url(),response.status()));
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/")
     console.log(await page.title());
     await userName.fill("rahulshetty");
@@ -23,6 +27,7 @@ test('Browser Context Playwright test',async ({page})=>
     //console.log(await cartTitles.nth(1).textContent());
     const allTitles = await cartTitles.allTextContents();
     console.log(allTitles);
+    await page.pause();
     
 });
 
@@ -60,8 +65,8 @@ test('UI Controls Playwright test',async ({page})=>
     await page.locator('#terms').uncheck();
     expect(await page.locator('#terms').isChecked()).toBeFalsy();
     await expect(documentLink).toHaveAttribute("class","blinkingText");
-    //await page.pause();
-    //await signIn.click();
+    await signIn.click();
+    await page.pause();
     //await page.waitForLoadState('networkidle');
     //const allTitles = await cartTitles.allTextContents();
     //console.log(allTitles);

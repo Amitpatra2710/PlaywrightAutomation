@@ -11,7 +11,7 @@ test.beforeAll( async()=>
     response = await apiUtils.createOrder(createOrderPayload);
 })
 
-test.only('Place the Order',async({page})=>
+test('@API Place the Order',async({page})=>
 {
     page.addInitScript(value =>{
         window.localStorage.setItem('token',value);      
@@ -35,5 +35,6 @@ test.only('Place the Order',async({page})=>
     await page.locator('div[class*=col-text]').waitFor();
     //await page.pause();
     expect(page.locator('div[class*=col-text]')).toHaveText(response.orderId);
+
 
 })
